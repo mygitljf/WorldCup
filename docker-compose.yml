@@ -1,0 +1,25 @@
+services:
+  web:
+    build:
+      context: .
+    environment:
+      DEMO_MODE: "true"
+      NEXT_TELEMETRY_DISABLED: "1"
+      PUBLIC_BASE_URL: ${PUBLIC_BASE_URL:-http://42.123.114.169:8080}
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2-alpine
+    depends_on:
+      - web
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:
