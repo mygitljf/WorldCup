@@ -18,6 +18,28 @@ This project is for entertainment and education only. It does not support real-m
 - GitHub star bonus simulation for an extra virtual `$1,000`.
 - Docker Compose deployment on a single server.
 
+## Tech Stack
+
+| Area | Stack | Purpose |
+| --- | --- | --- |
+| Web framework | Next.js 15 App Router | Server-rendered pages, API route handlers, standalone production build. |
+| UI runtime | React 19 | Interactive client components for bet slips, reward claiming, and navigation. |
+| Language | TypeScript strict mode | End-to-end type safety with `noUncheckedIndexedAccess` and exact optional property checks. |
+| Styling | Tailwind CSS | Responsive football-stadium visual system, layout utilities, and component styling. |
+| API layer | Next.js Route Handlers | Health, readiness, matches, bets, leaderboard, user history, settlement, and reward endpoints. |
+| Input validation | Zod | Request parsing for bet placement and demo settlement payloads. |
+| Domain logic | Pure TypeScript services | Virtual bankroll accounting, locked-odds betting, match settlement, leaderboard ranking, and GitHub star bonus rules. |
+| Data store | In-memory mock store | MVP demo persistence seeded from mock 2026 World Cup fixtures and users. |
+| Result handling | Typed result helpers | Explicit success/failure flows for business rules without throwing for expected domain outcomes. |
+| Formatting | Shared TypeScript utilities | Money formatting and exhaustive-state helpers used across API and UI. |
+| Unit testing | Vitest + jsdom | Business logic and utility tests for betting, leaderboard, star bonus, and money formatting. |
+| Linting/formatting | Biome | Fast lint checks, import hygiene, no explicit `any`, and consistent code style. |
+| Type checking | `tsc --noEmit` | Strict compile-time verification before deployment. |
+| Safety checks | Shell verification scripts | Tracked-secret scanning and TypeScript file LOC guard. |
+| Container deploy | Docker Compose + Caddy | Preferred single-server deployment path with Caddy reverse proxy and Next standalone output. |
+| Live runtime | Node standalone + systemd | Current ECS deployment runs the Next standalone server on port `80` with `worldcup.service`. |
+| Package manager | pnpm via Corepack | Reproducible installs from `pnpm-lock.yaml`. |
+
 ## Quick Start
 
 ```bash
