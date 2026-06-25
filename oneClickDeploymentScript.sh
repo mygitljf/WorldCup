@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-public_base_url="${PUBLIC_BASE_URL:-http://42.123.114.169:8080}"
+public_base_url="${PUBLIC_BASE_URL:-http://47.95.124.205}"
+app_port="${APP_PORT:-80}"
 
 if command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1; then
   docker compose up -d --build
@@ -12,8 +13,11 @@ else
   mkdir -p .next/standalone/.next
   rm -rf .next/standalone/.next/static
   cp -r .next/static .next/standalone/.next/static
-  pkill -f '/opt/worldcup/.next/standalone/server.js' || true
-  (cd .next/standalone && PORT=8080 HOSTNAME=0.0.0.0 nohup node server.js >/tmp/worldcup-next.log 2>&1 &)
+  if [ -f /tmp/worldcup-next.pid ]; then
+    kill "$(cat /tmp/worldcup-next.pid)" 2>/dev/null || true
+    rm -f /tmp/worldcup-next.pid
+  fi
+  (cd .next/standalone && PORT="${app_port}" HOSTNAME=0.0.0.0 nohup node server.js >/tmp/worldcup-next.log 2>&1 & echo $! >/tmp/worldcup-next.pid)
   sleep 5
 fi
 bash scripts/deploy/smoke-check.sh "${public_base_url}"
