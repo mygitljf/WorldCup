@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if git ls-files --error-unmatch deployServer.md >/dev/null 2>&1; then
+if git ls-files | grep -Eq '(^|/)deployServer\.md$'; then
   printf 'deployServer.md must not be tracked\n' >&2
   exit 1
 fi

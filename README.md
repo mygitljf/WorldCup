@@ -52,7 +52,7 @@ Open http://localhost:3000.
 ## Docker Or Node Fallback
 
 ```bash
-bash oneClickDeploymentScript.sh
+bash scripts/deploy/one-click-deploy.sh
 bash scripts/deploy/smoke-check.sh http://127.0.0.1
 ```
 
@@ -67,7 +67,7 @@ corepack pnpm build
 
 ## Deployment Notes
 
-- Public entry is served on port `80`; Docker+Caddy is preferred, and `oneClickDeploymentScript.sh` falls back to a Node standalone process when Docker networking is unavailable.
+- Public entry is served on port `80`; Docker+Caddy via `deploy/docker-compose.yml` is preferred, and `scripts/deploy/one-click-deploy.sh` falls back to a Node standalone process when Docker networking is unavailable.
 - Keep `deployServer.md`, `.env`, server credentials, API keys, database dumps, and logs out of git.
 - The current MVP uses an in-memory demo store, so data resets when the container restarts.
 - Production persistence should replace the demo store with PostgreSQL and Drizzle.
