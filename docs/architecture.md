@@ -3,7 +3,7 @@
 The deployable MVP is a single Next.js app with an in-memory demo store.
 
 ```text
-Browser -> Caddy :8080 -> Next.js web container :3000 -> in-memory demo store
+Browser -> host :80 -> Caddy container :8080 -> Next.js web container :3000 -> in-memory demo store
 ```
 
 Core modules:

@@ -2,7 +2,7 @@
 
 Virtual-only 2026 World Cup bankroll simulator. Every demo user starts with `$1,000` in virtual credits, places mock market-odds bets, settles matches, and competes on a Top 15 profit leaderboard.
 
-Live Demo: http://42.123.114.169:8080
+[Live Demo](http://47.95.124.205)
 
 ## Legal Disclaimer
 
@@ -31,7 +31,7 @@ Open http://localhost:3000.
 
 ```bash
 bash oneClickDeploymentScript.sh
-bash scripts/deploy/smoke-check.sh http://127.0.0.1:8080
+bash scripts/deploy/smoke-check.sh http://127.0.0.1
 ```
 
 ## Useful Commands
@@ -45,7 +45,7 @@ corepack pnpm build
 
 ## Deployment Notes
 
-- Public entry is served on port `8080`; Docker+Caddy is preferred, and `oneClickDeploymentScript.sh` falls back to a Node standalone process when Docker networking is unavailable.
+- Public entry is served on port `80`; Docker+Caddy is preferred, and `oneClickDeploymentScript.sh` falls back to a Node standalone process when Docker networking is unavailable.
 - Keep `deployServer.md`, `.env`, server credentials, API keys, database dumps, and logs out of git.
 - The current MVP uses an in-memory demo store, so data resets when the container restarts.
 - Production persistence should replace the demo store with PostgreSQL and Drizzle.
