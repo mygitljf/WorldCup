@@ -1,11 +1,16 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+repo_root="$(cd "${script_dir}/../.." && pwd)"
+
 public_base_url="${PUBLIC_BASE_URL:-http://47.95.124.205}"
 app_port="${APP_PORT:-80}"
 
+cd "${repo_root}"
+
 if command -v docker >/dev/null 2>&1 && docker info >/dev/null 2>&1; then
-  docker compose up -d --build
+  docker compose -f deploy/docker-compose.yml up -d --build
 else
   command -v pnpm >/dev/null 2>&1 || npm install -g pnpm@10.24.0
   pnpm install --frozen-lockfile

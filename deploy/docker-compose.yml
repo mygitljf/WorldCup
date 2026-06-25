@@ -1,7 +1,8 @@
 services:
   web:
     build:
-      context: .
+      context: ..
+      dockerfile: Dockerfile
     environment:
       DEMO_MODE: "true"
       NEXT_TELEMETRY_DISABLED: "1"
