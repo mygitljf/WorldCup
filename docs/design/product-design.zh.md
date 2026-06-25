@@ -93,7 +93,7 @@ Docker Compose 服务建议：
 - 生产环境推荐使用域名加 HTTPS，例如 `https://worldcup.example.com`，不要长期使用裸 `IP:端口` 作为公开入口。
 - 裸 `IP:端口` 可以用于内测，但对 OAuth 回调、cookie、安全提示、分享传播和搜索收录都不友好。
 - Caddy 监听 80/443，对外提供 HTTPS，对内反向代理到 `web:3000`。
-- README 同时保留本地启动入口：`docker compose up`，方便开发者一键自部署。
+- README 同时保留本地启动入口：`docker compose -f deploy/docker-compose.yml up`，方便开发者一键自部署。
 
 ### 3.4 赔率与赛果 Provider 策略
 
@@ -388,12 +388,12 @@ draft -> placed -> settled_win
 - README 顶部放产品截图、`Live Demo` 入口、免责声明和一键启动命令。
 - 提供 mock 赛程、mock 赔率和 seed 用户，让任何人本地 2 分钟跑起来。
 - 增加架构图、数据流图、投注结算流程图。
-- 提供 `docker compose up` 本地启动路径。
+- 提供 `docker compose -f deploy/docker-compose.yml up` 本地启动路径。
 - 提供 `.env.example` 和 provider adapter 开发说明。
 - 使用 MIT 或 Apache-2.0 许可证，具体由项目所有者决定。
 - 建立 Roadmap、Contributing、Issue templates、good first issue。
 - 做一个公开 demo 站，只展示虚拟模拟，不引导真实博彩。
-- README 明确线上入口和本地自部署入口：普通用户点 `Live Demo` 直接玩，开发者用 `docker compose up` 本地跑。
+- README 明确线上入口和本地自部署入口：普通用户点 `Live Demo` 直接玩，开发者用 `docker compose -f deploy/docker-compose.yml up` 本地跑。
 
 ### 11.3 传播点
 
